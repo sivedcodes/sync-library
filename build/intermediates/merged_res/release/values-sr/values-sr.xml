@@ -25,30 +25,5 @@
     <string name="common_open_on_phone">Отвори на телефону</string>
     <string name="common_signin_button_text">Пријави ме</string>
     <string name="common_signin_button_text_long">Пријави ме на Google</string>
-    <string msgid="3260749812566568062" name="copy_toast_msg">"Линк је копиран у привремену меморију"</string>
-    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Копирај линк"</string>
-    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Отвори у прегледачу"</string>
-    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Дели линк"</string>
-    <string name="native_body">Садржај</string>
-    <string name="native_headline">Наслов</string>
-    <string name="native_media_view">Приказ медија</string>
-    <string name="notifications_permission_confirm">Дозволи</string>
-    <string name="notifications_permission_decline">Не дозволи</string>
-    <string name="notifications_permission_title">Желите да дозволите апликацији да вам шаље обавештења?</string>
-    <string name="offline_dialog_image_description">Икона</string>
-    <string name="offline_dialog_text">Добићете обавештење са линком кад поново будете онлајн</string>
-    <string name="offline_notification_title">Прегледајте оглас који сте сачували док сте били офлајн</string>
-    <string name="offline_opt_in_confirm">Потврди</string>
-    <string name="offline_opt_in_decline">Не, хвала</string>
-    <string name="offline_opt_in_message">Послаћемо вам обавештење са линком до сајта оглашавача.</string>
-    <string name="offline_opt_in_title">Отворите оглас кад поново будете онлајн.</string>
-    <string name="s1">Чување слике</string>
-    <string name="s2">Желите ли да дозволите да оглас сачува слику у Галерији слика?</string>
-    <string name="s3">Прихвати</string>
-    <string name="s4">Одбиј</string>
-    <string name="s5">Прављење догађаја у календару</string>
-    <string name="s6">Желите ли да дозволите да оглас направи догађај у календару?</string>
-    <string name="s7">Пробни оглас</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string name="watermark_label_prefix">AdMob - </string>
 </resources>

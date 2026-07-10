@@ -25,30 +25,5 @@
     <string name="common_open_on_phone">Բացել հեռախոսով</string>
     <string name="common_signin_button_text">Մուտք գործել</string>
     <string name="common_signin_button_text_long">Մուտք գործել Google-ով</string>
-    <string msgid="3260749812566568062" name="copy_toast_msg">"Հղումը պատճենվեց սեղմատախտակին"</string>
-    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Պատճենել հղումը"</string>
-    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Բացել դիտարկիչում"</string>
-    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Կիսվել հղումով"</string>
-    <string name="native_body">Հիմնական տեքստ</string>
-    <string name="native_headline">Վերնագիր</string>
-    <string name="native_media_view">Մեդիա տեսք</string>
-    <string name="notifications_permission_confirm">Թույլատրել</string>
-    <string name="notifications_permission_decline">Չթույլատրել</string>
-    <string name="notifications_permission_title">Թույլատրե՞լ հավելվածին, որ ձեզ ծանուցումներ ուղարկի։</string>
-    <string name="offline_dialog_image_description">Պատկերակ</string>
-    <string name="offline_dialog_text">Դուք կստանաք ծանուցում՝ գովազդատուի կայքի հղումով, երբ նորից միանաք ցանցին</string>
-    <string name="offline_notification_title">Դիտեք հայտարարությունը, որը պահել եք անցանց ռեժիմում</string>
-    <string name="offline_opt_in_confirm">Եղավ</string>
-    <string name="offline_opt_in_decline">Ոչ, շնորհակալություն</string>
-    <string name="offline_opt_in_message">Դուք կստանաք ծանուցում՝ գովազդատուի կայքի հղումով։</string>
-    <string name="offline_opt_in_title">Բացեք հայտարարությունը, երբ նորից միանաք ցանցին։</string>
-    <string name="s1">Պահել պատկերը</string>
-    <string name="s2">Թույլատրե՞լ Գովազդին պահել պատկերը Պատկերասրահում:</string>
-    <string name="s3">Ընդունել</string>
-    <string name="s4">Մերժել</string>
-    <string name="s5">Ստեղծել օրացույցի միջոցառում</string>
-    <string name="s6">Թույլատրե՞լ Գովազդին ստեղծել օրացույցի միջոցառում:</string>
-    <string name="s7">Փորձարկել գովազդը</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string name="watermark_label_prefix">AdMob – </string>
 </resources>

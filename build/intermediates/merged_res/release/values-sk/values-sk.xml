@@ -25,30 +25,5 @@
     <string name="common_open_on_phone">Otvoriť v telefóne</string>
     <string name="common_signin_button_text">Prihlásiť sa</string>
     <string name="common_signin_button_text_long">Prihlásiť sa do účtu Google</string>
-    <string msgid="3260749812566568062" name="copy_toast_msg">"Odkaz bol skopírovaný do schránky"</string>
-    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopírovať odkaz"</string>
-    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Otvoriť v prehliadači"</string>
-    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Zdieľať odkaz"</string>
-    <string name="native_body">Text</string>
-    <string name="native_headline">Nadpis</string>
-    <string name="native_media_view">Zobrazenie média</string>
-    <string name="notifications_permission_confirm">Povoliť</string>
-    <string name="notifications_permission_decline">Nepovoliť</string>
-    <string name="notifications_permission_title">Chcete povoliť aplikácii posielať vám upozornenia?</string>
-    <string name="offline_dialog_image_description">Ikona</string>
-    <string name="offline_dialog_text">Po opätovnom pripojení k internetu dostanete upozornenie s odkazom</string>
-    <string name="offline_notification_title">Zobrazte si reklamu, ktorú ste uložili v režime offline</string>
-    <string name="offline_opt_in_confirm">OK</string>
-    <string name="offline_opt_in_decline">Nie, ďakujem</string>
-    <string name="offline_opt_in_message">Pošleme vám upozornenie s odkazom na web inzerenta.</string>
-    <string name="offline_opt_in_title">Reklama sa otvorí, keď budete znova online.</string>
-    <string name="s1">Uloženie obrázka</string>
-    <string name="s2">Povoliť reklame uložiť obrázok do galérie obrázkov?</string>
-    <string name="s3">Prijať</string>
-    <string name="s4">Odmietnuť</string>
-    <string name="s5">Vytvorenie udalosti v kalendári</string>
-    <string name="s6">Povoliť reklame vytvoriť udalosť v kalendári?</string>
-    <string name="s7">Testovacia reklama</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string name="watermark_label_prefix">AdMob – </string>
 </resources>

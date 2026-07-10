@@ -46,20 +46,20 @@
     <incident
         id="GradleDependency"
         severity="warning"
-        message="A newer version of com.google.android.gms:play-services-ads than 23.0.0 is available: 25.4.0">
+        message="A newer version of com.google.android.gms:play-services-ads-identifier than 18.1.0 is available: 18.3.0">
         <fix-replace
-            description="Change to 25.4.0"
+            description="Change to 18.3.0"
             family="Update versions"
-            oldString="23.0.0"
-            replacement="25.4.0"/>
+            oldString="18.1.0"
+            replacement="18.3.0"/>
         <location
             file="${:*projectDir}/build.gradle.kts"
             line="25"
             column="21"
             startOffset="426"
             endLine="25"
-            endColumn="68"
-            endOffset="473"/>
+            endColumn="79"
+            endOffset="484"/>
     </incident>
 
     <incident
@@ -75,10 +75,10 @@
             file="${:*projectDir}/build.gradle.kts"
             line="26"
             column="21"
-            startOffset="496"
+            startOffset="507"
             endLine="26"
             endColumn="73"
-            endOffset="548"/>
+            endOffset="559"/>
     </incident>
 
     <incident
@@ -94,10 +94,10 @@
             file="${:*projectDir}/build.gradle.kts"
             line="27"
             column="21"
-            startOffset="571"
+            startOffset="582"
             endLine="27"
             endColumn="46"
-            endOffset="596"/>
+            endOffset="607"/>
     </incident>
 
 </incidents>

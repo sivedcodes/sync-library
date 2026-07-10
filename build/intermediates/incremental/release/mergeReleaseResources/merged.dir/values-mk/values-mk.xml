@@ -25,30 +25,5 @@
     <string name="common_open_on_phone">Отвори на телефонот</string>
     <string name="common_signin_button_text">Најави се</string>
     <string name="common_signin_button_text_long">Најави се со Google</string>
-    <string msgid="3260749812566568062" name="copy_toast_msg">"Линкот е копиран во привремена меморија"</string>
-    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Копирај го линкот"</string>
-    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Отвори во прелистувач"</string>
-    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Сподели линк"</string>
-    <string name="native_body">Главен текст</string>
-    <string name="native_headline">Наслов</string>
-    <string name="native_media_view">Преглед на аудиовизуелни содржини</string>
-    <string name="notifications_permission_confirm">Дозволи</string>
-    <string name="notifications_permission_decline">Не дозволувај</string>
-    <string name="notifications_permission_title">Дозволи апликацијата да ти испраќа известувања?</string>
-    <string name="offline_dialog_image_description">Икона</string>
-    <string name="offline_dialog_text">Ќе добиете известување со линкот кога ќе бидете повторно онлајн</string>
-    <string name="offline_notification_title">Прегледајте ја рекламата што ја зачувавте кога бевте офлајн</string>
-    <string name="offline_opt_in_confirm">Во ред</string>
-    <string name="offline_opt_in_decline">Не, фала</string>
-    <string name="offline_opt_in_message">Ќе ви испратиме известување со линк до сајтот на огласувачот.</string>
-    <string name="offline_opt_in_title">Отворете ја рекламата кога ќе бидете повторно онлајн.</string>
-    <string name="s1">Зачувај ја сликата</string>
-    <string name="s2">Дали дозволувате рекламата да ја зачува сликата во „Галеријата со слики“?</string>
-    <string name="s3">Прифати</string>
-    <string name="s4">Одбиј</string>
-    <string name="s5">Создај настан во календарот</string>
-    <string name="s6">Дали дозволувате рекламата да создаде настан во календарот?</string>
-    <string name="s7">Тестирај ја рекламата</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string name="watermark_label_prefix">AdMob - </string>
 </resources>

@@ -25,30 +25,5 @@
     <string name="common_open_on_phone">Buka di ponsel</string>
     <string name="common_signin_button_text">Login</string>
     <string name="common_signin_button_text_long">Login dengan Google</string>
-    <string msgid="3260749812566568062" name="copy_toast_msg">"Link disalin ke papan klip"</string>
-    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Salin link"</string>
-    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Buka di browser"</string>
-    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Bagikan link"</string>
-    <string name="native_body">Isi</string>
-    <string name="native_headline">Judul</string>
-    <string name="native_media_view">Tampilan Media</string>
-    <string name="notifications_permission_confirm">Izinkan</string>
-    <string name="notifications_permission_decline">Jangan izinkan</string>
-    <string name="notifications_permission_title">Izinkan aplikasi mengirim notifikasi kepada Anda?</string>
-    <string name="offline_dialog_image_description">Ikon</string>
-    <string name="offline_dialog_text">Anda akan menerima notifikasi berisi link ketika Anda kembali online</string>
-    <string name="offline_notification_title">Lihat iklan yang Anda simpan ketika offline</string>
-    <string name="offline_opt_in_confirm">Oke</string>
-    <string name="offline_opt_in_decline">Tidak</string>
-    <string name="offline_opt_in_message">Kami akan mengirimkan notifikasi kepada Anda berisi link ke situs pengiklan.</string>
-    <string name="offline_opt_in_title">Buka iklan ketika Anda kembali online.</string>
-    <string name="s1">Simpan gambar</string>
-    <string name="s2">Izinkan Iklan menyimpan gambar di Galeri foto?</string>
-    <string name="s3">Terima</string>
-    <string name="s4">Tolak</string>
-    <string name="s5">Buat acara kalender</string>
-    <string name="s6">Izinkan Iklan membuat acara kalender?</string>
-    <string name="s7">Tes Iklan</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string name="watermark_label_prefix">AdMob - </string>
 </resources>

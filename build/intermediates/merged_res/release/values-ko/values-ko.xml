@@ -25,30 +25,5 @@
     <string name="common_open_on_phone">스마트폰에서 열기</string>
     <string name="common_signin_button_text">로그인</string>
     <string name="common_signin_button_text_long">Google 계정으로 로그인</string>
-    <string msgid="3260749812566568062" name="copy_toast_msg">"클립보드에 링크 복사됨"</string>
-    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"링크 복사"</string>
-    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"브라우저에서 열기"</string>
-    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"링크 공유"</string>
-    <string name="native_body">본문</string>
-    <string name="native_headline">광고 제목</string>
-    <string name="native_media_view">미디어 보기</string>
-    <string name="notifications_permission_confirm">허용</string>
-    <string name="notifications_permission_decline">허용 안함</string>
-    <string name="notifications_permission_title">앱에서 알림을 보내도록 허용하시겠습니까?</string>
-    <string name="offline_dialog_image_description">아이콘</string>
-    <string name="offline_dialog_text">다시 온라인 상태가 되면 링크와 함께 알림을 받습니다.</string>
-    <string name="offline_notification_title">오프라인 상태에서 저장한 광고 보기</string>
-    <string name="offline_opt_in_confirm">확인</string>
-    <string name="offline_opt_in_decline">나중에</string>
-    <string name="offline_opt_in_message">광고주 사이트로 연결되는 링크와 함께 알림을 보내 드리겠습니다.</string>
-    <string name="offline_opt_in_title">다시 온라인 상태가 될 때 광고 열기</string>
-    <string name="s1">이미지 저장</string>
-    <string name="s2">광고에서 사진 갤러리에 이미지를 저장하도록 허용하시겠습니까?</string>
-    <string name="s3">동의</string>
-    <string name="s4">거부</string>
-    <string name="s5">캘린더 일정 만들기</string>
-    <string name="s6">광고에서 캘린더 일정을 만들도록 허용하시겠습니까?</string>
-    <string name="s7">테스트 광고</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string name="watermark_label_prefix">AdMob - </string>
 </resources>

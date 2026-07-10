@@ -1,6 +1,6 @@
-/home/sived/Desktop/New Folder/sync-library/build.gradle.kts:25: Warning: A newer version of com.google.android.gms:play-services-ads than 23.0.0 is available: 25.4.0 [GradleDependency]
-    implementation("com.google.android.gms:play-services-ads:23.0.0")
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/sived/Desktop/New Folder/sync-library/build.gradle.kts:25: Warning: A newer version of com.google.android.gms:play-services-ads-identifier than 18.1.0 is available: 18.3.0 [GradleDependency]
+    implementation("com.google.android.gms:play-services-ads-identifier:18.1.0")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/sived/Desktop/New Folder/sync-library/build.gradle.kts:26: Warning: A newer version of com.google.android.gms:play-services-location than 21.1.0 is available: 21.4.0 [GradleDependency]
     implementation("com.google.android.gms:play-services-location:21.1.0")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

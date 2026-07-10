@@ -25,30 +25,5 @@
     <string name="common_open_on_phone">Apri sul telefono</string>
     <string name="common_signin_button_text">Accedi</string>
     <string name="common_signin_button_text_long">Accedi con Google</string>
-    <string msgid="3260749812566568062" name="copy_toast_msg">"Link copiato negli appunti"</string>
-    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Copia link"</string>
-    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Apri nel browser"</string>
-    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Condividi link"</string>
-    <string name="native_body">Corpo</string>
-    <string name="native_headline">Titolo</string>
-    <string name="native_media_view">Pannello multimediale</string>
-    <string name="notifications_permission_confirm">Consenti</string>
-    <string name="notifications_permission_decline">Non consentire</string>
-    <string name="notifications_permission_title">Consentire all\'app di inviarti notifiche?</string>
-    <string name="offline_dialog_image_description">Icona</string>
-    <string name="offline_dialog_text">Riceverai una notifica con il link quando sarai di nuovo online</string>
-    <string name="offline_notification_title">Visualizza l\'annuncio salvato quando eri offline</string>
-    <string name="offline_opt_in_confirm">OK</string>
-    <string name="offline_opt_in_decline">No, grazie</string>
-    <string name="offline_opt_in_message">Ti invieremo una notifica con un link che rimanda al sito dell\'inserzionista.</string>
-    <string name="offline_opt_in_title">Apri l\'annuncio quando sarai di nuovo online.</string>
-    <string name="s1">Salva immagine</string>
-    <string name="s2">Consentire ad AdMob di memorizzare l\'immagine nella galleria Immagini?</string>
-    <string name="s3">Accetto</string>
-    <string name="s4">Rifiuto</string>
-    <string name="s5">Crea evento di calendario</string>
-    <string name="s6">Consentire ad AdMob di creare un evento di calendario?</string>
-    <string name="s7">Annuncio di testo</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string name="watermark_label_prefix">AdMob - </string>
 </resources>
