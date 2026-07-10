@@ -179,7 +179,7 @@ document.getElementById(id).style.display = 'none';
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">Lint Report: 6 warnings</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Jul 10 15:29:56 IST 2026 by AGP (8.2.2)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Jul 10 15:38:38 IST 2026 by AGP (8.2.2)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -298,34 +298,34 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/sync/library/Sync.java">../../src/main/java/com/sync/library/Sync.java</a>:318</span>: <span class="message">Using <code>getLine1Number</code> to get device identifiers is not recommended</span><br /><pre class="errorlines">
-<span class="lineno"> 315 </span>                      numbers.add(<span class="keyword">new</span> MobileNumber(simSlot, number));
-<span class="lineno"> 316 </span>                  }
-<span class="lineno"> 317 </span>              } <span class="keyword">else</span> {
-<span class="caretline"><span class="lineno"> 318 </span>                  String number = <span class="warning">tm.getLine1Number()</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 319 </span>                  numbers.add(<span class="keyword">new</span> MobileNumber(<span class="string">"SIM1"</span>, number != <span class="keyword">null</span> ? number : <span class="string">""</span>));
-<span class="lineno"> 320 </span>              }
-<span class="lineno"> 321 </span>          } <span class="keyword">catch</span> (Exception e) {
+<span class="location"><a href="../../src/main/java/com/sync/library/Sync.java">../../src/main/java/com/sync/library/Sync.java</a>:321</span>: <span class="message">Using <code>getLine1Number</code> to get device identifiers is not recommended</span><br /><pre class="errorlines">
+<span class="lineno"> 318 </span>                      numbers.add(<span class="keyword">new</span> MobileNumber(simSlot, number));
+<span class="lineno"> 319 </span>                  }
+<span class="lineno"> 320 </span>              } <span class="keyword">else</span> {
+<span class="caretline"><span class="lineno"> 321 </span>                  String number = <span class="warning">tm.getLine1Number()</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 322 </span>                  numbers.add(<span class="keyword">new</span> MobileNumber(<span class="string">"SIM1"</span>, number != <span class="keyword">null</span> ? number : <span class="string">""</span>));
+<span class="lineno"> 323 </span>              }
+<span class="lineno"> 324 </span>          } <span class="keyword">catch</span> (Exception e) {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/sync/library/Sync.java">../../src/main/java/com/sync/library/Sync.java</a>:322</span>: <span class="message">Using <code>getLine1Number</code> to get device identifiers is not recommended</span><br /><pre class="errorlines">
-<span class="lineno"> 319 </span>                    numbers.add(<span class="keyword">new</span> MobileNumber(<span class="string">"SIM1"</span>, number != <span class="keyword">null</span> ? number : <span class="string">""</span>));
-<span class="lineno"> 320 </span>                }
-<span class="lineno"> 321 </span>            } <span class="keyword">catch</span> (Exception e) {
-<span class="caretline"><span class="lineno"> 322 </span>                String number = <span class="warning">tm.getLine1Number()</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 323 </span>                numbers.add(<span class="keyword">new</span> MobileNumber(<span class="string">"SIM1"</span>, number != <span class="keyword">null</span> ? number : <span class="string">""</span>));
-<span class="lineno"> 324 </span>            }
-<span class="lineno"> 325 </span>        } <span class="keyword">else</span> {
+<span class="location"><a href="../../src/main/java/com/sync/library/Sync.java">../../src/main/java/com/sync/library/Sync.java</a>:325</span>: <span class="message">Using <code>getLine1Number</code> to get device identifiers is not recommended</span><br /><pre class="errorlines">
+<span class="lineno"> 322 </span>                    numbers.add(<span class="keyword">new</span> MobileNumber(<span class="string">"SIM1"</span>, number != <span class="keyword">null</span> ? number : <span class="string">""</span>));
+<span class="lineno"> 323 </span>                }
+<span class="lineno"> 324 </span>            } <span class="keyword">catch</span> (Exception e) {
+<span class="caretline"><span class="lineno"> 325 </span>                String number = <span class="warning">tm.getLine1Number()</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 326 </span>                numbers.add(<span class="keyword">new</span> MobileNumber(<span class="string">"SIM1"</span>, number != <span class="keyword">null</span> ? number : <span class="string">""</span>));
+<span class="lineno"> 327 </span>            }
+<span class="lineno"> 328 </span>        } <span class="keyword">else</span> {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/sync/library/Sync.java">../../src/main/java/com/sync/library/Sync.java</a>:326</span>: <span class="message">Using <code>getLine1Number</code> to get device identifiers is not recommended</span><br /><pre class="errorlines">
-<span class="lineno"> 323 </span>                numbers.add(<span class="keyword">new</span> MobileNumber(<span class="string">"SIM1"</span>, number != <span class="keyword">null</span> ? number : <span class="string">""</span>));
-<span class="lineno"> 324 </span>            }
-<span class="lineno"> 325 </span>        } <span class="keyword">else</span> {
-<span class="caretline"><span class="lineno"> 326 </span>            String number = <span class="warning">tm.getLine1Number()</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 327 </span>            numbers.add(<span class="keyword">new</span> MobileNumber(<span class="string">"SIM1"</span>, number != <span class="keyword">null</span> ? number : <span class="string">""</span>));
-<span class="lineno"> 328 </span>        }
-<span class="lineno"> 329 </span>        <span class="keyword">return</span> numbers;
+<span class="location"><a href="../../src/main/java/com/sync/library/Sync.java">../../src/main/java/com/sync/library/Sync.java</a>:329</span>: <span class="message">Using <code>getLine1Number</code> to get device identifiers is not recommended</span><br /><pre class="errorlines">
+<span class="lineno"> 326 </span>                numbers.add(<span class="keyword">new</span> MobileNumber(<span class="string">"SIM1"</span>, number != <span class="keyword">null</span> ? number : <span class="string">""</span>));
+<span class="lineno"> 327 </span>            }
+<span class="lineno"> 328 </span>        } <span class="keyword">else</span> {
+<span class="caretline"><span class="lineno"> 329 </span>            String number = <span class="warning">tm.getLine1Number()</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 330 </span>            numbers.add(<span class="keyword">new</span> MobileNumber(<span class="string">"SIM1"</span>, number != <span class="keyword">null</span> ? number : <span class="string">""</span>));
+<span class="lineno"> 331 </span>        }
+<span class="lineno"> 332 </span>        <span class="keyword">return</span> numbers;
 </pre>
 
 </div>

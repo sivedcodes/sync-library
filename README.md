@@ -26,7 +26,7 @@ Then add dependency in your **app** `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.github.sivedcodes:sync-library:v1.0.1")
+    implementation("com.github.sivedcodes:sync-library:v1.1.0")
     implementation("com.google.android.gms:play-services-ads-identifier:18.1.0")   // for GAID
     implementation("com.google.android.gms:play-services-location:21.1.0") // for location
 }

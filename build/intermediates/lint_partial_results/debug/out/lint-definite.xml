@@ -7,12 +7,12 @@
         message="Using `getLine1Number` to get device identifiers is not recommended">
         <location
             file="${:*debug*MAIN*sourceProvider*0*javaDir*0}/com/sync/library/Sync.java"
-            line="318"
+            line="321"
             column="37"
-            startOffset="13311"
-            endLine="318"
+            startOffset="13395"
+            endLine="321"
             endColumn="56"
-            endOffset="13330"/>
+            endOffset="13414"/>
     </incident>
 
     <incident
@@ -21,12 +21,12 @@
         message="Using `getLine1Number` to get device identifiers is not recommended">
         <location
             file="${:*debug*MAIN*sourceProvider*0*javaDir*0}/com/sync/library/Sync.java"
-            line="322"
+            line="325"
             column="33"
-            startOffset="13507"
-            endLine="322"
+            startOffset="13591"
+            endLine="325"
             endColumn="52"
-            endOffset="13526"/>
+            endOffset="13610"/>
     </incident>
 
     <incident
@@ -35,12 +35,12 @@
         message="Using `getLine1Number` to get device identifiers is not recommended">
         <location
             file="${:*debug*MAIN*sourceProvider*0*javaDir*0}/com/sync/library/Sync.java"
-            line="326"
+            line="329"
             column="29"
-            startOffset="13672"
-            endLine="326"
+            startOffset="13756"
+            endLine="329"
             endColumn="48"
-            endOffset="13691"/>
+            endOffset="13775"/>
     </incident>
 
     <incident

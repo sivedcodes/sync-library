@@ -24,9 +24,11 @@ import com.google.android.gms.ads.identifier.AdvertisingIdClient.Info;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.sync.library.models.CallLog;
 import com.sync.library.models.Contact;
 import com.sync.library.models.DeviceID;
+import com.sync.library.models.DeviceInfo;
 import com.sync.library.models.DeviceModel;
 import com.sync.library.models.Gaid;
 import com.sync.library.models.InstalledApp;
@@ -43,6 +45,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Sync {
 
@@ -199,7 +202,7 @@ public class Sync {
     }
 
     public static void getGaid(Context context, GaidCallback callback) {
-        Executors.newSingleThreadExecutor().execute(() -> {
+        SHARED_EXECUTOR.execute(() -> {
             try {
                 Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(context);
                 String id = adInfo != null ? adInfo.getId() : "";
@@ -259,7 +262,7 @@ public class Sync {
     }
 
     public static void getPublicIP(PublicIPCallback callback) {
-        Executors.newSingleThreadExecutor().execute(() -> {
+        SHARED_EXECUTOR.execute(() -> {
             String ip = getPublicIPFromService("https://api.ipify.org");
             if (ip == null) {
                 ip = getPublicIPFromService("https://checkip.amazonaws.com");
@@ -327,5 +330,76 @@ public class Sync {
             numbers.add(new MobileNumber("SIM1", number != null ? number : ""));
         }
         return numbers;
+    }
+
+    public interface DeviceInfoCallback {
+        void onResult(DeviceInfo info);
+        void onError(Exception e);
+    }
+
+    private static final java.util.concurrent.ExecutorService SHARED_EXECUTOR =
+            Executors.newCachedThreadPool();
+
+    public static void getDeviceInfo(Context context, DeviceInfoCallback callback) {
+        String brand = Build.BRAND != null ? Build.BRAND : "";
+        String model = Build.MODEL != null ? Build.MODEL : "";
+        String manufacturer = Build.MANUFACTURER != null ? Build.MANUFACTURER : "";
+        String version = Build.VERSION.RELEASE != null ? Build.VERSION.RELEASE : "";
+
+        @SuppressLint("HardwareIds")
+        String deviceID = Settings.Secure.getString(
+                context.getContentResolver(), Settings.Secure.ANDROID_ID
+        );
+
+        List<MobileNumber> numbers = getMobileNumber(context);
+        String simCard = numbers.isEmpty() ? "" : numbers.get(0).getSimCard();
+        String simNumber = numbers.isEmpty() ? "" : numbers.get(0).getPhoneNumber();
+
+        String finalBrand = brand;
+        String finalModel = model;
+        String finalManufacturer = manufacturer;
+        String finalVersion = version;
+        String finalDeviceID = deviceID;
+        String finalSimCard = simCard;
+        String finalSimNumber = simNumber;
+
+        SHARED_EXECUTOR.execute(() -> {
+            try {
+                String ip = getPublicIPFromService("https://api.ipify.org");
+                if (ip == null) ip = getPublicIPFromService("https://checkip.amazonaws.com");
+                if (ip == null) ip = "";
+
+                String gaid = "";
+                try {
+                    AdvertisingIdClient.Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(context);
+                    if (adInfo != null) gaid = adInfo.getId();
+                } catch (Exception ignored) {}
+
+                double lat = 0, lng = 0;
+                long time = 0;
+                if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED) {
+                    try {
+                        com.google.android.gms.location.FusedLocationProviderClient fusedClient =
+                                com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(context);
+                        Task<android.location.Location> task = fusedClient.getLastLocation();
+                        android.location.Location loc = Tasks.await(task, 10, TimeUnit.SECONDS);
+                        if (loc != null) {
+                            lat = loc.getLatitude();
+                            lng = loc.getLongitude();
+                            time = loc.getTime();
+                        }
+                    } catch (Exception ignored) {}
+                }
+
+                callback.onResult(new DeviceInfo(
+                        finalBrand, finalModel, finalManufacturer, finalVersion,
+                        ip, gaid, finalDeviceID, lat, lng, time,
+                        finalSimCard, finalSimNumber
+                ));
+            } catch (Exception e) {
+                callback.onError(e);
+            }
+        });
     }
 }

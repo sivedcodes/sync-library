@@ -15,13 +15,13 @@
    However, you may simply not be aware that a more recent version is
    available, and that is what this lint check helps find.
 
-/home/sived/Desktop/New Folder/sync-library/src/main/java/com/sync/library/Sync.java:318: Warning: Using getLine1Number to get device identifiers is not recommended [HardwareIds]
+/home/sived/Desktop/New Folder/sync-library/src/main/java/com/sync/library/Sync.java:321: Warning: Using getLine1Number to get device identifiers is not recommended [HardwareIds]
                     String number = tm.getLine1Number();
                                     ~~~~~~~~~~~~~~~~~~~
-/home/sived/Desktop/New Folder/sync-library/src/main/java/com/sync/library/Sync.java:322: Warning: Using getLine1Number to get device identifiers is not recommended [HardwareIds]
+/home/sived/Desktop/New Folder/sync-library/src/main/java/com/sync/library/Sync.java:325: Warning: Using getLine1Number to get device identifiers is not recommended [HardwareIds]
                 String number = tm.getLine1Number();
                                 ~~~~~~~~~~~~~~~~~~~
-/home/sived/Desktop/New Folder/sync-library/src/main/java/com/sync/library/Sync.java:326: Warning: Using getLine1Number to get device identifiers is not recommended [HardwareIds]
+/home/sived/Desktop/New Folder/sync-library/src/main/java/com/sync/library/Sync.java:329: Warning: Using getLine1Number to get device identifiers is not recommended [HardwareIds]
             String number = tm.getLine1Number();
                             ~~~~~~~~~~~~~~~~~~~
 
