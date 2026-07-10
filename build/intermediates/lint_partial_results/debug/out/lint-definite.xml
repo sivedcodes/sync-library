@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.2.2" type="incidents">
+
+    <incident
+        id="HardwareIds"
+        severity="warning"
+        message="Using `getLine1Number` to get device identifiers is not recommended">
+        <location
+            file="${:*debug*MAIN*sourceProvider*0*javaDir*0}/com/sync/library/Sync.java"
+            line="301"
+            column="37"
+            startOffset="12679"
+            endLine="301"
+            endColumn="56"
+            endOffset="12698"/>
+    </incident>
+
+    <incident
+        id="HardwareIds"
+        severity="warning"
+        message="Using `getLine1Number` to get device identifiers is not recommended">
+        <location
+            file="${:*debug*MAIN*sourceProvider*0*javaDir*0}/com/sync/library/Sync.java"
+            line="305"
+            column="33"
+            startOffset="12875"
+            endLine="305"
+            endColumn="52"
+            endOffset="12894"/>
+    </incident>
+
+    <incident
+        id="HardwareIds"
+        severity="warning"
+        message="Using `getLine1Number` to get device identifiers is not recommended">
+        <location
+            file="${:*debug*MAIN*sourceProvider*0*javaDir*0}/com/sync/library/Sync.java"
+            line="309"
+            column="29"
+            startOffset="13040"
+            endLine="309"
+            endColumn="48"
+            endOffset="13059"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.gms:play-services-ads than 23.0.0 is available: 25.4.0">
+        <fix-replace
+            description="Change to 25.4.0"
+            family="Update versions"
+            oldString="23.0.0"
+            replacement="25.4.0"/>
+        <location
+            file="${:*projectDir}/build.gradle.kts"
+            line="20"
+            column="21"
+            startOffset="345"
+            endLine="20"
+            endColumn="68"
+            endOffset="392"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.gms:play-services-location than 21.1.0 is available: 21.4.0">
+        <fix-replace
+            description="Change to 21.4.0"
+            family="Update versions"
+            oldString="21.1.0"
+            replacement="21.4.0"/>
+        <location
+            file="${:*projectDir}/build.gradle.kts"
+            line="21"
+            column="21"
+            startOffset="415"
+            endLine="21"
+            endColumn="73"
+            endOffset="467"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.core:core than 1.12.0 is available: 1.19.0">
+        <fix-replace
+            description="Change to 1.19.0"
+            family="Update versions"
+            oldString="1.12.0"
+            replacement="1.19.0"/>
+        <location
+            file="${:*projectDir}/build.gradle.kts"
+            line="22"
+            column="21"
+            startOffset="490"
+            endLine="22"
+            endColumn="46"
+            endOffset="515"/>
+    </incident>
+
+</incidents>

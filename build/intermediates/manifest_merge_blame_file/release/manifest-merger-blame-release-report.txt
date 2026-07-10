@@ -1,0 +1,39 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.sync.library" >
+5
+6    <uses-sdk android:minSdkVersion="21" />
+7
+8    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+8-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:4:5-72
+8-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:4:22-69
+9    <uses-permission android:name="android.permission.READ_CONTACTS" />
+9-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:5:5-72
+9-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:5:22-69
+10    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+10-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:6:5-79
+10-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:6:22-76
+11    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+11-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:7:5-81
+11-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:7:22-78
+12    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+12-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:8:5-76
+12-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:8:22-73
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:9:5-67
+13-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:9:22-64
+14    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+14-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:10:5-75
+14-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:10:22-72
+15    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+15-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:11:5-77
+15-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:11:22-74
+16    <uses-permission
+16-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:12:5-13:53
+17        android:name="android.permission.QUERY_ALL_PACKAGES"
+17-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:12:22-74
+18        tools:ignore="QueryAllPackagesPermission" />
+18-->/home/sived/Desktop/New Folder/sync-library/src/main/AndroidManifest.xml:13:9-50
+19
+20</manifest>

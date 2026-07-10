@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.sync.library-merged_res-17:/xml/image_share_filepaths.xml",
+        "source": "com.sync.library-browser-1.4.0-7:/xml/image_share_filepaths.xml"
+    },
+    {
+        "merged": "com.sync.library-merged_res-17:/xml/gma_ad_services_config.xml",
+        "source": "com.sync.library-play-services-ads-lite-23.0.0-2:/xml/gma_ad_services_config.xml"
+    }
+]

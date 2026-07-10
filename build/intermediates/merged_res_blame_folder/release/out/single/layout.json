@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "com.sync.library-merged_res-17:/layout/offline_ads_dialog.xml",
+        "source": "com.sync.library-play-services-ads-23.0.0-3:/layout/offline_ads_dialog.xml"
+    },
+    {
+        "merged": "com.sync.library-merged_res-17:/layout/ime_secondary_split_test_activity.xml",
+        "source": "com.sync.library-core-1.12.0-11:/layout/ime_secondary_split_test_activity.xml"
+    },
+    {
+        "merged": "com.sync.library-merged_res-17:/layout/browser_actions_context_menu_row.xml",
+        "source": "com.sync.library-browser-1.4.0-7:/layout/browser_actions_context_menu_row.xml"
+    },
+    {
+        "merged": "com.sync.library-merged_res-17:/layout/ime_base_split_test_activity.xml",
+        "source": "com.sync.library-core-1.12.0-11:/layout/ime_base_split_test_activity.xml"
+    },
+    {
+        "merged": "com.sync.library-merged_res-17:/layout/admob_empty_layout.xml",
+        "source": "com.sync.library-play-services-ads-lite-23.0.0-2:/layout/admob_empty_layout.xml"
+    },
+    {
+        "merged": "com.sync.library-merged_res-17:/layout/notification_template_part_chronometer.xml",
+        "source": "com.sync.library-core-1.12.0-11:/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "com.sync.library-merged_res-17:/layout/custom_dialog.xml",
+        "source": "com.sync.library-core-1.12.0-11:/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "com.sync.library-merged_res-17:/layout/browser_actions_context_menu_page.xml",
+        "source": "com.sync.library-browser-1.4.0-7:/layout/browser_actions_context_menu_page.xml"
+    },
+    {
+        "merged": "com.sync.library-merged_res-17:/layout/notification_template_part_time.xml",
+        "source": "com.sync.library-core-1.12.0-11:/layout/notification_template_part_time.xml"
+    }
+]

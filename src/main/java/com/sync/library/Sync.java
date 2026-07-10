@@ -33,7 +33,6 @@ import com.sync.library.models.InstalledApp;
 import com.sync.library.models.InstallLocation;
 import com.sync.library.models.LocationInfo;
 import com.sync.library.models.MobileNumber;
-import com.sync.library.models.PublicIP;
 import com.sync.library.models.WifiInfo;
 
 import java.io.BufferedReader;
@@ -53,7 +52,7 @@ public class Sync {
     }
 
     public interface PublicIPCallback {
-        void onResult(List<PublicIP> ipList);
+        void onResult(String ip);
         void onError(Exception e);
     }
 
@@ -242,19 +241,16 @@ public class Sync {
         });
     }
 
-    public static void getPublicIPList(PublicIPCallback callback) {
+    public static void getPublicIP(PublicIPCallback callback) {
         Executors.newSingleThreadExecutor().execute(() -> {
-            try {
-                List<PublicIP> ips = new ArrayList<>();
-                String ip = getPublicIPFromService("https://api.ipify.org");
-                if (ip != null) ips.add(new PublicIP(ip));
-                if (ips.isEmpty()) {
-                    ip = getPublicIPFromService("https://checkip.amazonaws.com");
-                    if (ip != null) ips.add(new PublicIP(ip));
-                }
-                callback.onResult(ips);
-            } catch (Exception e) {
-                callback.onError(e);
+            String ip = getPublicIPFromService("https://api.ipify.org");
+            if (ip == null) {
+                ip = getPublicIPFromService("https://checkip.amazonaws.com");
+            }
+            if (ip != null) {
+                callback.onResult(ip);
+            } else {
+                callback.onError(new IOException("Could not fetch public IP"));
             }
         });
     }
