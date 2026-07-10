@@ -7,12 +7,12 @@
         message="As of Android 11, this method no longer returns information about all apps; \&#xA;see https://g.co/dev/packagevisibility for details">
         <location
             file="${:*debug*MAIN*sourceProvider*0*javaDir*0}/com/sync/library/Sync.java"
-            line="145"
+            line="162"
             column="45"
-            startOffset="5862"
-            endLine="145"
+            startOffset="6494"
+            endLine="162"
             endColumn="69"
-            endOffset="5886"/>
+            endOffset="6518"/>
         <map>
             <entry
                 name="queryAll"

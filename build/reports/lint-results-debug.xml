@@ -63,7 +63,7 @@
         errorLine2="                                    ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/sived/Desktop/New Folder/sync-library/src/main/java/com/sync/library/Sync.java"
-            line="301"
+            line="318"
             column="37"/>
     </issue>
 
@@ -81,7 +81,7 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/sived/Desktop/New Folder/sync-library/src/main/java/com/sync/library/Sync.java"
-            line="305"
+            line="322"
             column="33"/>
     </issue>
 
@@ -99,7 +99,7 @@
         errorLine2="                            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/sived/Desktop/New Folder/sync-library/src/main/java/com/sync/library/Sync.java"
-            line="309"
+            line="326"
             column="29"/>
     </issue>
 

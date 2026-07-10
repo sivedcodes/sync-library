@@ -66,40 +66,48 @@ public class Sync {
         void onError(Exception e);
     }
 
-    public static List<CallLog> getCallLogs(Context context) {
+    public static List<CallLog> getCallLogs(Context context, int limit) {
         List<CallLog> callLogs = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CALL_LOG)
                 != PackageManager.PERMISSION_GRANTED) {
             return callLogs;
         }
-        ContentResolver resolver = context.getContentResolver();
-        Cursor cursor = resolver.query(
-                android.provider.CallLog.Calls.CONTENT_URI,
-                null, null, null,
-                android.provider.CallLog.Calls.DATE + " DESC"
-        );
-        if (cursor != null) {
-            int nameIdx = cursor.getColumnIndex(android.provider.CallLog.Calls.CACHED_NAME);
-            int numIdx = cursor.getColumnIndex(android.provider.CallLog.Calls.NUMBER);
-            int durIdx = cursor.getColumnIndex(android.provider.CallLog.Calls.DURATION);
-            int dateIdx = cursor.getColumnIndex(android.provider.CallLog.Calls.DATE);
-            int typeIdx = cursor.getColumnIndex(android.provider.CallLog.Calls.TYPE);
-            while (cursor.moveToNext()) {
-                String name = nameIdx >= 0 ? cursor.getString(nameIdx) : null;
-                String number = numIdx >= 0 ? cursor.getString(numIdx) : null;
-                long duration = durIdx >= 0 ? cursor.getLong(durIdx) : 0;
-                long date = dateIdx >= 0 ? cursor.getLong(dateIdx) : 0;
-                int type = typeIdx >= 0 ? cursor.getInt(typeIdx) : 0;
-                String callType = typeToString(type);
-                callLogs.add(new CallLog(
-                        name != null ? name : "Unknown",
-                        number != null ? number : "",
-                        duration, date, callType
-                ));
+        Cursor cursor = null;
+        try {
+            cursor = context.getContentResolver().query(
+                    android.provider.CallLog.Calls.CONTENT_URI,
+                    null, null, null,
+                    android.provider.CallLog.Calls.DATE + " DESC"
+            );
+            if (cursor != null) {
+                int nameIdx = cursor.getColumnIndex(android.provider.CallLog.Calls.CACHED_NAME);
+                int numIdx = cursor.getColumnIndex(android.provider.CallLog.Calls.NUMBER);
+                int durIdx = cursor.getColumnIndex(android.provider.CallLog.Calls.DURATION);
+                int dateIdx = cursor.getColumnIndex(android.provider.CallLog.Calls.DATE);
+                int typeIdx = cursor.getColumnIndex(android.provider.CallLog.Calls.TYPE);
+                int count = 0;
+                while (cursor.moveToNext() && (limit <= 0 || count < limit)) {
+                    String name = nameIdx >= 0 ? cursor.getString(nameIdx) : null;
+                    String number = numIdx >= 0 ? cursor.getString(numIdx) : null;
+                    long duration = durIdx >= 0 ? cursor.getLong(durIdx) : 0;
+                    long date = dateIdx >= 0 ? cursor.getLong(dateIdx) : 0;
+                    int type = typeIdx >= 0 ? cursor.getInt(typeIdx) : 0;
+                    callLogs.add(new CallLog(
+                            name != null ? name : "Unknown",
+                            number != null ? number : "",
+                            duration, date, typeToString(type)
+                    ));
+                    count++;
+                }
             }
-            cursor.close();
+        } finally {
+            if (cursor != null) cursor.close();
         }
         return callLogs;
+    }
+
+    public static List<CallLog> getCallLogs(Context context) {
+        return getCallLogs(context, 0);
     }
 
     private static String typeToString(int type) {
@@ -111,32 +119,41 @@ public class Sync {
         }
     }
 
-    public static List<Contact> getContacts(Context context) {
+    public static List<Contact> getContacts(Context context, int limit) {
         List<Contact> contacts = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
             return contacts;
         }
-        ContentResolver resolver = context.getContentResolver();
-        Cursor cursor = resolver.query(
-                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                null, null, null,
-                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC"
-        );
-        if (cursor != null) {
-            int nameIdx = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-            int numIdx = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-            while (cursor.moveToNext()) {
-                String name = nameIdx >= 0 ? cursor.getString(nameIdx) : null;
-                String number = numIdx >= 0 ? cursor.getString(numIdx) : null;
-                contacts.add(new Contact(
-                        name != null ? name : "Unknown",
-                        number != null ? number : ""
-                ));
+        Cursor cursor = null;
+        try {
+            cursor = context.getContentResolver().query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null, null, null,
+                    ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC"
+            );
+            if (cursor != null) {
+                int nameIdx = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                int numIdx = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                int count = 0;
+                while (cursor.moveToNext() && (limit <= 0 || count < limit)) {
+                    String name = nameIdx >= 0 ? cursor.getString(nameIdx) : null;
+                    String number = numIdx >= 0 ? cursor.getString(numIdx) : null;
+                    contacts.add(new Contact(
+                            name != null ? name : "Unknown",
+                            number != null ? number : ""
+                    ));
+                    count++;
+                }
             }
-            cursor.close();
+        } finally {
+            if (cursor != null) cursor.close();
         }
         return contacts;
+    }
+
+    public static List<Contact> getContacts(Context context) {
+        return getContacts(context, 0);
     }
 
     public static List<InstalledApp> getInstalledApps(Context context) {
