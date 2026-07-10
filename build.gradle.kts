@@ -15,6 +15,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    publishing {
+        singleVariant("release")
+    }
 }
 
 dependencies {
@@ -26,6 +30,9 @@ dependencies {
 publishing {
     publications {
         register<MavenPublication>("release") {
+            groupId = "com.github.sivedcodes"
+            artifactId = "sync-library"
+            version = "1.0.0"
             afterEvaluate {
                 from(components["release"])
             }

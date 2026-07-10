@@ -179,7 +179,7 @@ document.getElementById(id).style.display = 'none';
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">Lint Report: 6 warnings</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Jul 10 14:25:38 IST 2026 by AGP (8.2.2)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Jul 10 14:51:34 IST 2026 by AGP (8.2.2)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -231,31 +231,33 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:20</span>: <span class="message">A newer version of com.google.android.gms:play-services-ads than 23.0.0 is available: 25.4.0</span><br /><pre class="errorlines">
-<span class="lineno"> 17 </span>}
-<span class="lineno"> 18 </span>
-<span class="lineno"> 19 </span>dependencies {
-<span class="caretline"><span class="lineno"> 20 </span>    implementation("<span class="warning">com.google.android.gms:play-services-ads:23.0.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 21 </span>    implementation("com.google.android.gms:play-services-location:21.1.0")
-<span class="lineno"> 22 </span>    implementation("androidx.core:core:1.12.0")
-<span class="lineno"> 23 </span>}
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:25</span>: <span class="message">A newer version of com.google.android.gms:play-services-ads than 23.0.0 is available: 25.4.0</span><br /><pre class="errorlines">
+<span class="lineno"> 22 </span>}
+<span class="lineno"> 23 </span>
+<span class="lineno"> 24 </span>dependencies {
+<span class="caretline"><span class="lineno"> 25 </span>    implementation("<span class="warning">com.google.android.gms:play-services-ads:23.0.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 26 </span>    implementation("com.google.android.gms:play-services-location:21.1.0")
+<span class="lineno"> 27 </span>    implementation("androidx.core:core:1.12.0")
+<span class="lineno"> 28 </span>}
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:21</span>: <span class="message">A newer version of com.google.android.gms:play-services-location than 21.1.0 is available: 21.4.0</span><br /><pre class="errorlines">
-<span class="lineno"> 18 </span>
-<span class="lineno"> 19 </span>dependencies {
-<span class="lineno"> 20 </span>    implementation("com.google.android.gms:play-services-ads:23.0.0")
-<span class="caretline"><span class="lineno"> 21 </span>    implementation("<span class="warning">com.google.android.gms:play-services-location:21.1.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 22 </span>    implementation("androidx.core:core:1.12.0")
-<span class="lineno"> 23 </span>}
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:26</span>: <span class="message">A newer version of com.google.android.gms:play-services-location than 21.1.0 is available: 21.4.0</span><br /><pre class="errorlines">
+<span class="lineno"> 23 </span>
+<span class="lineno"> 24 </span>dependencies {
+<span class="lineno"> 25 </span>    implementation("com.google.android.gms:play-services-ads:23.0.0")
+<span class="caretline"><span class="lineno"> 26 </span>    implementation("<span class="warning">com.google.android.gms:play-services-location:21.1.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 27 </span>    implementation("androidx.core:core:1.12.0")
+<span class="lineno"> 28 </span>}
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:22</span>: <span class="message">A newer version of androidx.core:core than 1.12.0 is available: 1.19.0</span><br /><pre class="errorlines">
-<span class="lineno"> 19 </span>dependencies {
-<span class="lineno"> 20 </span>    implementation("com.google.android.gms:play-services-ads:23.0.0")
-<span class="lineno"> 21 </span>    implementation("com.google.android.gms:play-services-location:21.1.0")
-<span class="caretline"><span class="lineno"> 22 </span>    implementation("<span class="warning">androidx.core:core:1.12.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 23 </span>}
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:27</span>: <span class="message">A newer version of androidx.core:core than 1.12.0 is available: 1.19.0</span><br /><pre class="errorlines">
+<span class="lineno"> 24 </span>dependencies {
+<span class="lineno"> 25 </span>    implementation("com.google.android.gms:play-services-ads:23.0.0")
+<span class="lineno"> 26 </span>    implementation("com.google.android.gms:play-services-location:21.1.0")
+<span class="caretline"><span class="lineno"> 27 </span>    implementation("<span class="warning">androidx.core:core:1.12.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 28 </span>}
+<span class="lineno"> 29 </span>
+<span class="lineno"> 30 </span>publishing {
 </pre>
 
 </div>

@@ -54,12 +54,12 @@
             replacement="25.4.0"/>
         <location
             file="${:*projectDir}/build.gradle.kts"
-            line="20"
+            line="25"
             column="21"
-            startOffset="345"
-            endLine="20"
+            startOffset="426"
+            endLine="25"
             endColumn="68"
-            endOffset="392"/>
+            endOffset="473"/>
     </incident>
 
     <incident
@@ -73,12 +73,12 @@
             replacement="21.4.0"/>
         <location
             file="${:*projectDir}/build.gradle.kts"
-            line="21"
+            line="26"
             column="21"
-            startOffset="415"
-            endLine="21"
+            startOffset="496"
+            endLine="26"
             endColumn="73"
-            endOffset="467"/>
+            endOffset="548"/>
     </incident>
 
     <incident
@@ -92,12 +92,12 @@
             replacement="1.19.0"/>
         <location
             file="${:*projectDir}/build.gradle.kts"
-            line="22"
+            line="27"
             column="21"
-            startOffset="490"
-            endLine="22"
+            startOffset="571"
+            endLine="27"
             endColumn="46"
-            endOffset="515"/>
+            endOffset="596"/>
     </incident>
 
 </incidents>

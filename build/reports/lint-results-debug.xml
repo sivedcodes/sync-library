@@ -13,7 +13,7 @@
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/sived/Desktop/New Folder/sync-library/build.gradle.kts"
-            line="20"
+            line="25"
             column="21"/>
     </issue>
 
@@ -29,7 +29,7 @@
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/sived/Desktop/New Folder/sync-library/build.gradle.kts"
-            line="21"
+            line="26"
             column="21"/>
     </issue>
 
@@ -45,7 +45,7 @@
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/sived/Desktop/New Folder/sync-library/build.gradle.kts"
-            line="22"
+            line="27"
             column="21"/>
     </issue>
 
