@@ -1,0 +1,2 @@
+-keep class com.sync.library.** { *; }
+-keepclassmembers class com.sync.library.** { *; }
