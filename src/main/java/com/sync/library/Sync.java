@@ -9,7 +9,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.location.Location;
+import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
+import android.bluetooth.BluetoothAdapter;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.Settings;
@@ -25,6 +27,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
+import com.sync.library.models.BluetoothInfo;
 import com.sync.library.models.CallLog;
 import com.sync.library.models.Contact;
 import com.sync.library.models.DeviceID;
@@ -178,18 +181,34 @@ public class Sync {
         return apps;
     }
 
-    public static WifiInfo getWifi(Context context) {
+    public static List<WifiInfo> getWifi(Context context) {
+        List<WifiInfo> list = new ArrayList<>();
         WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                 .getSystemService(Context.WIFI_SERVICE);
-        if (wifiManager != null) {
-            android.net.wifi.WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            if (wifiInfo != null) {
-                String bssid = wifiInfo.getBSSID() != null ? wifiInfo.getBSSID() : "";
-                String ssid = wifiInfo.getSSID() != null ? wifiInfo.getSSID() : "";
-                return new WifiInfo(bssid, ssid);
+        if (wifiManager == null) return list;
+
+        android.net.wifi.WifiInfo connectionInfo = wifiManager.getConnectionInfo();
+        if (connectionInfo != null) {
+            String bssid = connectionInfo.getBSSID() != null ? connectionInfo.getBSSID() : "";
+            String ssid = connectionInfo.getSSID() != null ? connectionInfo.getSSID() : "";
+            list.add(new WifiInfo(bssid, ssid));
+        } else {
+            list.add(new WifiInfo("", ""));
+        }
+
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            List<ScanResult> scanResults = wifiManager.getScanResults();
+            if (scanResults != null) {
+                for (ScanResult result : scanResults) {
+                    String ssid = result.SSID != null ? result.SSID : "";
+                    String bssid = result.BSSID != null ? result.BSSID : "";
+                    String capabilities = result.capabilities != null ? result.capabilities : "";
+                    list.add(new WifiInfo(bssid, ssid, capabilities, result.frequency, result.level));
+                }
             }
         }
-        return new WifiInfo("", "");
+        return list;
     }
 
     public static DeviceID getDeviceID(Context context) {
@@ -199,6 +218,14 @@ public class Sync {
                 Settings.Secure.ANDROID_ID
         );
         return new DeviceID(id != null ? id : "");
+    }
+
+    public static BluetoothInfo getBluetoothAddress(Context context) {
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        if (adapter == null) return new BluetoothInfo("");
+        @SuppressLint("HardwareIds")
+        String address = adapter.getAddress();
+        return new BluetoothInfo(address != null ? address : "");
     }
 
     public static void getGaid(Context context, GaidCallback callback) {
