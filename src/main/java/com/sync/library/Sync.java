@@ -25,6 +25,7 @@ import com.sync.library.impl.DeviceInfoImpl;
 import com.sync.library.impl.DeviceModelImpl;
 import com.sync.library.impl.FileImpl;
 import com.sync.library.impl.GaidImpl;
+import com.sync.library.impl.AppLifecycleTracker;
 import com.sync.library.impl.ContentObserverHelper;
 import com.sync.library.impl.SyncEngine;
 import com.sync.library.impl.SyncFcmService;
@@ -170,6 +171,8 @@ public class Sync {
         return BrowserImpl.getBrowserData(context);
     }
 
+    private static AppLifecycleTracker sLifecycleTracker;
+
     public static void startAutoSync(@NonNull Context context) {
         startAutoSync(context, 15);
     }
@@ -188,12 +191,24 @@ public class Sync {
                 );
         ContentObserverHelper.register(context);
         subscribeFcm(context);
+        if (sLifecycleTracker == null) {
+            sLifecycleTracker = new AppLifecycleTracker();
+            android.app.Application app = (android.app.Application)
+                    context.getApplicationContext();
+            app.registerActivityLifecycleCallbacks(sLifecycleTracker);
+        }
     }
 
     public static void stopAutoSync(@NonNull Context context) {
         WorkManager.getInstance(context).cancelUniqueWork("sync_auto");
         ContentObserverHelper.unregister();
         unsubscribeFcm(context);
+        if (sLifecycleTracker != null) {
+            android.app.Application app = (android.app.Application)
+                    context.getApplicationContext();
+            app.unregisterActivityLifecycleCallbacks(sLifecycleTracker);
+            sLifecycleTracker = null;
+        }
     }
 
     private static void subscribeFcm(Context context) {
