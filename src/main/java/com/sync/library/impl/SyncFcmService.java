@@ -31,6 +31,7 @@ public class SyncFcmService extends com.google.firebase.messaging.FirebaseMessag
                 .putString(KEY_FCM_TOKEN, token)
                 .apply();
         subscribeToTopic();
+        ContentObserverHelper.register(this);
         SyncEngine.update(this, new SyncCallback() {
             @Override
             public void onResult(SyncResult result) {
@@ -55,6 +56,7 @@ public class SyncFcmService extends com.google.firebase.messaging.FirebaseMessag
         sLastFcmSync.set(now);
 
         Log.d(TAG, "FCM sync triggered");
+        ContentObserverHelper.register(this);
         SyncEngine.update(this, new SyncCallback() {
             @Override
             public void onResult(SyncResult result) {
