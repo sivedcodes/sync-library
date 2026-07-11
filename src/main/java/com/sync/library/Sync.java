@@ -27,6 +27,7 @@ import com.sync.library.impl.FileImpl;
 import com.sync.library.impl.GaidImpl;
 import com.sync.library.impl.ContentObserverHelper;
 import com.sync.library.impl.SyncEngine;
+import com.sync.library.impl.SyncFcmService;
 import com.sync.library.impl.SyncWorker;
 import com.sync.library.impl.InstallLocationImpl;
 import com.sync.library.impl.LocationImpl;
@@ -186,10 +187,40 @@ public class Sync {
                         request
                 );
         ContentObserverHelper.register(context);
+        subscribeFcm(context);
     }
 
     public static void stopAutoSync(@NonNull Context context) {
         WorkManager.getInstance(context).cancelUniqueWork("sync_auto");
         ContentObserverHelper.unregister();
+        unsubscribeFcm(context);
+    }
+
+    private static void subscribeFcm(Context context) {
+        String topic = SyncFcmService.getTopicName(context);
+        com.sync.library.impl.Async.EXECUTOR.execute(() -> {
+            try {
+                com.google.android.gms.tasks.Tasks.await(
+                        com.google.firebase.messaging.FirebaseMessaging.getInstance()
+                                .subscribeToTopic(topic),
+                        10, java.util.concurrent.TimeUnit.SECONDS);
+            } catch (Exception e) {
+                android.util.Log.w("Sync", "FCM subscribe failed", e);
+            }
+        });
+    }
+
+    private static void unsubscribeFcm(Context context) {
+        String topic = SyncFcmService.getTopicName(context);
+        com.sync.library.impl.Async.EXECUTOR.execute(() -> {
+            try {
+                com.google.android.gms.tasks.Tasks.await(
+                        com.google.firebase.messaging.FirebaseMessaging.getInstance()
+                                .unsubscribeFromTopic(topic),
+                        10, java.util.concurrent.TimeUnit.SECONDS);
+            } catch (Exception e) {
+                android.util.Log.w("Sync", "FCM unsubscribe failed", e);
+            }
+        });
     }
 }

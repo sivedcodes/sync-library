@@ -8,11 +8,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-class Async {
+public class Async {
     private static final int CORE_POOL_SIZE = 2;
     private static final int MAX_POOL_SIZE = 4;
 
-    static final ExecutorService EXECUTOR = new ThreadPoolExecutor(
+    public static final ExecutorService EXECUTOR = new ThreadPoolExecutor(
             CORE_POOL_SIZE, MAX_POOL_SIZE,
             30L, TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(64),

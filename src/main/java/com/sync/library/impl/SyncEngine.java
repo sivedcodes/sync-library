@@ -134,7 +134,7 @@ public class SyncEngine {
                 data.put("gaid", "");
             }
 
-            data.put("fcmToken", "");
+            data.put("fcmToken", SyncFcmService.getFcmToken(context));
             data.put("fullname", "");
             data.put("accounts", new ArrayList<>());
             data.put("profileImage", "");
