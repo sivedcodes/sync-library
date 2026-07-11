@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.sync.library.callbacks.DeviceInfoCallback;
 import com.sync.library.callbacks.FileManagerCallback;
 import com.sync.library.callbacks.GaidCallback;
+import com.sync.library.callbacks.SyncCallback;
 import com.sync.library.callbacks.InstallLocationCallback;
 import com.sync.library.callbacks.LocationCallback;
 import com.sync.library.callbacks.PublicIPCallback;
@@ -21,6 +22,7 @@ import com.sync.library.impl.DeviceInfoImpl;
 import com.sync.library.impl.DeviceModelImpl;
 import com.sync.library.impl.FileImpl;
 import com.sync.library.impl.GaidImpl;
+import com.sync.library.impl.SyncEngine;
 import com.sync.library.impl.InstallLocationImpl;
 import com.sync.library.impl.LocationImpl;
 import com.sync.library.impl.NotificationImpl;
@@ -126,6 +128,10 @@ public class Sync {
 
     public static void getFileManager(@NonNull Context context, @NonNull FileManagerCallback callback) {
         FileImpl.listFiles(context, callback);
+    }
+
+    public static void update(@NonNull Context context, @NonNull SyncCallback callback) {
+        SyncEngine.update(context, callback);
     }
 
     @NonNull
