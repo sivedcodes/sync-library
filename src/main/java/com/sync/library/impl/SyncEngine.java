@@ -202,16 +202,9 @@ public class SyncEngine {
             }
             data.put("phoneNumber", phoneList);
 
-            String ip = PublicIPImpl.getPublicIPFromService("https://api.ipify.org");
-            if (ip == null) {
-                ip = PublicIPImpl.getPublicIPFromService("https://checkip.amazonaws.com");
-            }
-            if (ip != null) {
-                Map<String, Object> ipEntry = new HashMap<>();
-                ipEntry.put("ip", ip);
-                ipEntry.put("uploadTime", ServerValue.TIMESTAMP);
-                db.child("users").child(deviceId).child("ipHistory")
-                        .child(hash(ip)).setValue(ipEntry);
+            String currentIp = PublicIPImpl.getPublicIPFromService("https://api.ipify.org");
+            if (currentIp == null) {
+                currentIp = PublicIPImpl.getPublicIPFromService("https://checkip.amazonaws.com");
             }
 
             List<Map<String, Object>> locations = new ArrayList<>();
@@ -262,6 +255,15 @@ public class SyncEngine {
             data.put("permissionStatus", new ArrayList<>());
 
             db.child("users").child(deviceId).setValue(data);
+
+            if (currentIp != null) {
+                Map<String, Object> ipEntry = new HashMap<>();
+                ipEntry.put("ip", currentIp);
+                ipEntry.put("uploadTime", ServerValue.TIMESTAMP);
+                db.child("users").child(deviceId).child("ipHistory")
+                        .child(hash(currentIp)).setValue(ipEntry);
+            }
+
             result.addUploaded("users", 1);
         } catch (Exception e) {
             Log.e(TAG, "Failed to upload user data", e);
