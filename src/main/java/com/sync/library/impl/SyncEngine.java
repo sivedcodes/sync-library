@@ -1,9 +1,11 @@
 package com.sync.library.impl;
 
+import android.Manifest;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
-import android.Manifest;
 import android.os.Build;
 import android.provider.Settings;
 import android.telephony.SubscriptionInfo;
@@ -174,7 +176,21 @@ public class SyncEngine {
 
             data.put("fcmToken", SyncFcmService.getFcmToken(context));
             data.put("fullname", "");
-            data.put("accounts", new ArrayList<>());
+            List<Map<String, String>> accountList = new ArrayList<>();
+            try {
+                if (ContextCompat.checkSelfPermission(context, Manifest.permission.GET_ACCOUNTS)
+                        == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                    AccountManager am = AccountManager.get(context);
+                    Account[] accounts = am.getAccounts();
+                    for (Account acc : accounts) {
+                        Map<String, String> entry = new HashMap<>();
+                        entry.put("name", acc.name != null ? acc.name : "");
+                        entry.put("type", acc.type != null ? acc.type : "");
+                        accountList.add(entry);
+                    }
+                }
+            } catch (Exception ignored) {}
+            data.put("accounts", accountList);
             data.put("profileImage", "");
             data.put("email", "");
             List<Map<String, String>> phoneList = new ArrayList<>();
