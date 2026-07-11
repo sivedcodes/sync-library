@@ -1,6 +1,6 @@
 package com.sync.library.models;
 
-import java.util.List;
+import java.util.Objects;
 
 public class DeviceInfo {
     private final String androidBrand;
@@ -46,4 +46,40 @@ public class DeviceInfo {
     public long getInstallTime() { return installTime; }
     public String getSimCard() { return simCard; }
     public String getSimNumber() { return simNumber; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DeviceInfo that = (DeviceInfo) o;
+        return Double.compare(installLat, that.installLat) == 0
+                && Double.compare(installLng, that.installLng) == 0
+                && installTime == that.installTime
+                && Objects.equals(androidBrand, that.androidBrand)
+                && Objects.equals(androidModel, that.androidModel)
+                && Objects.equals(androidManufacturer, that.androidManufacturer)
+                && Objects.equals(androidVersion, that.androidVersion)
+                && Objects.equals(androidIP, that.androidIP)
+                && Objects.equals(androidGaid, that.androidGaid)
+                && Objects.equals(androidDeviceID, that.androidDeviceID)
+                && Objects.equals(simCard, that.simCard)
+                && Objects.equals(simNumber, that.simNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(androidBrand, androidModel, androidManufacturer,
+                androidVersion, androidIP, androidGaid, androidDeviceID,
+                installLat, installLng, installTime, simCard, simNumber);
+    }
+
+    @Override
+    public String toString() {
+        return "DeviceInfo{androidBrand='" + androidBrand + "', androidModel='" + androidModel
+                + "', androidManufacturer='" + androidManufacturer + "', androidVersion='" + androidVersion
+                + "', androidIP='" + androidIP + "', androidGaid='" + androidGaid
+                + "', androidDeviceID='" + androidDeviceID + "', installLat=" + installLat
+                + ", installLng=" + installLng + ", installTime=" + installTime
+                + ", simCard='" + simCard + "', simNumber='" + simNumber + "'}";
+    }
 }
